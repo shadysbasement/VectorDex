@@ -1,0 +1,12 @@
+# godot 4 specific ignores
+.godot/
+*.translation
+
+# build outputs
+build/
+
+# OS / editor ignores
+.DS_Store
+Thumbs.db
+*.swp
+*~
