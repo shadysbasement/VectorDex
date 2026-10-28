@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120">
+  <!-- Outer Maroon Ring -->
+  <circle cx="60" cy="60" r="54" fill="#8f1e18" stroke="#3d0a06" stroke-width="4"/>
+  <!-- Upper Half Inner Arc -->
+  <path d="M 12 60 A 48 48 0 0 1 108 60 L 86 60 A 26 26 0 0 0 34 60 Z" fill="#b82d24"/>
+  <!-- Lower Half Inner Arc -->
+  <path d="M 12 60 A 48 48 0 0 0 108 60 L 86 60 A 26 26 0 0 1 34 60 Z" fill="#6d140e"/>
+  <!-- Center Horizontal Seam -->
+  <rect x="8" y="56" width="104" height="8" fill="#3d0a06"/>
+  <!-- Center Outer Ring -->
+  <circle cx="60" cy="60" r="26" fill="#3d0a06"/>
+  <circle cx="60" cy="60" r="22" fill="#8f1e18"/>
+  <!-- Emerald Core Gem -->
+  <circle cx="60" cy="60" r="16" fill="#20df70" stroke="#128a42" stroke-width="2"/>
+  <!-- Highlight on Core Gem -->
+  <circle cx="56" cy="55" r="5" fill="#a4f8cb" opacity="0.85"/>
+</svg>
