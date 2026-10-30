@@ -1,0 +1,900 @@
+[gd_scene load_steps=32 format=3]
+
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_main"]
+[ext_resource type="Script" path="res://scripts/sound_manager.gd" id="2_sound"]
+[ext_resource type="PackedScene" path="res://scenes/components/stat_bar.tscn" id="3_statbar"]
+[ext_resource type="Texture2D" path="res://assets/icons/pokeball_emblem.svg" id="4_emblem"]
+[ext_resource type="Texture2D" path="res://assets/icons/lens_orb.svg" id="5_orb"]
+[ext_resource type="Texture2D" path="res://assets/icons/sound.svg" id="6_sound"]
+[ext_resource type="Texture2D" path="res://assets/icons/shuffle.svg" id="7_shuffle"]
+[ext_resource type="Texture2D" path="res://assets/icons/search.svg" id="8_search"]
+[ext_resource type="Texture2D" path="res://assets/icons/pokeball_watermark.svg" id="9_watermark"]
+[ext_resource type="Texture2D" path="res://assets/icons/sparkle.svg" id="10_sparkle"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_desk_bg"]
+bg_color = Color(0.065, 0.07, 0.085, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hoenn_case"]
+bg_color = Color(0.88, 0.28, 0.16, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 4
+border_color = Color(0.18, 0.05, 0.03, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 24
+corner_radius_bottom_left = 24
+shadow_color = Color(0, 0, 0, 0.55)
+shadow_size = 14
+shadow_offset = Vector2(0, 6)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_top_flap"]
+bg_color = Color(0.80, 0.24, 0.13, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.24, 0.06, 0.04, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hero_card"]
+bg_color = Color(0.28, 0.81, 0.69, 1)
+corner_radius_top_left = 18
+corner_radius_top_right = 18
+corner_radius_bottom_right = 18
+corner_radius_bottom_left = 18
+shadow_color = Color(0.28, 0.81, 0.69, 0.35)
+shadow_size = 12
+shadow_offset = Vector2(0, 4)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_search_capsule"]
+bg_color = Color(0.045, 0.05, 0.07, 0.98)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.26, 0.11, 0.08, 0.9)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_color = Color(0, 0, 0, 0.4)
+shadow_size = 5
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_search"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_keycap"]
+bg_color = Color(0.12, 0.14, 0.19, 0.9)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.24, 0.28, 0.38, 0.7)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_random_normal"]
+bg_color = Color(0.11, 0.12, 0.16, 0.95)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 2
+border_color = Color(0.26, 0.11, 0.08, 0.9)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+shadow_color = Color(0, 0, 0, 0.35)
+shadow_size = 4
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_random_hover"]
+bg_color = Color(0.18, 0.22, 0.30, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.35, 0.85, 0.70, 0.95)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+shadow_color = Color(0.35, 0.85, 0.70, 0.35)
+shadow_size = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_random_pressed"]
+bg_color = Color(0.08, 0.09, 0.12, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.35, 0.85, 0.70, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cry_normal"]
+bg_color = Color(0.09, 0.10, 0.14, 0.95)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 2
+border_color = Color(0.20, 0.24, 0.34, 0.85)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_color = Color(0, 0, 0, 0.35)
+shadow_size = 4
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cry_hover"]
+bg_color = Color(0.13, 0.17, 0.26, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.40, 0.78, 1.0, 0.95)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_color = Color(0.40, 0.78, 1.0, 0.35)
+shadow_size = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cry_pressed"]
+bg_color = Color(0.06, 0.08, 0.12, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.40, 0.78, 1.0, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_shiny_normal"]
+bg_color = Color(0.09, 0.10, 0.14, 0.95)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 2
+border_color = Color(0.32, 0.28, 0.16, 0.85)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_color = Color(0, 0, 0, 0.35)
+shadow_size = 4
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_shiny_hover"]
+bg_color = Color(0.18, 0.17, 0.10, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1.0, 0.85, 0.20, 0.95)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_color = Color(1.0, 0.85, 0.20, 0.4)
+shadow_size = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_shiny_pressed"]
+bg_color = Color(0.10, 0.09, 0.05, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1.0, 0.85, 0.20, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hud_card"]
+bg_color = Color(0.07, 0.075, 0.10, 0.95)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.18, 0.20, 0.27, 0.8)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_subcard"]
+bg_color = Color(0.05, 0.055, 0.075, 0.9)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.16, 0.18, 0.24, 0.6)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_flavor"]
+bg_color = Color(0.05, 0.055, 0.075, 0.95)
+border_width_left = 3
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.28, 0.81, 0.69, 0.9)
+corner_radius_top_left = 4
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_legend"]
+bg_color = Color(0.06, 0.065, 0.085, 0.95)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.20, 0.10, 0.08, 0.8)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_main")
+
+[node name="SoundManager" type="Node" parent="."]
+script = ExtResource("2_sound")
+
+[node name="DeskBackground" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_desk_bg")
+
+[node name="HoennCasing" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 14.0
+offset_top = 10.0
+offset_right = -14.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_hoenn_case")
+
+[node name="CasingMargin" type="MarginContainer" parent="HoennCasing"]
+layout_mode = 2
+theme_override_constants/margin_left = 14
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 14
+theme_override_constants/margin_bottom = 10
+
+[node name="VerticalLayout" type="VBoxContainer" parent="HoennCasing/CasingMargin"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="TopFlap" type="PanelContainer" parent="HoennCasing/CasingMargin/VerticalLayout"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_top_flap")
+
+[node name="FlapMargin" type="MarginContainer" parent="HoennCasing/CasingMargin/VerticalLayout/TopFlap"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 6
+
+[node name="FlapRow" type="HBoxContainer" parent="HoennCasing/CasingMargin/VerticalLayout/TopFlap/FlapMargin"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="SensorCluster" type="HBoxContainer" parent="HoennCasing/CasingMargin/VerticalLayout/TopFlap/FlapMargin/FlapRow"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="OrbLens" type="TextureRect" parent="HoennCasing/CasingMargin/VerticalLayout/TopFlap/FlapMargin/FlapRow/SensorCluster"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(38, 38)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("5_orb")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="LEDs" type="VBoxContainer" parent="HoennCasing/CasingMargin/VerticalLayout/TopFlap/FlapMargin/FlapRow/SensorCluster"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 4
+
+[node name="LEDGreen1" type="ColorRect" parent="HoennCasing/CasingMargin/VerticalLayout/TopFlap/FlapMargin/FlapRow/SensorCluster/LEDs"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(8, 11)
+layout_mode = 2
+color = Color(0.13, 0.87, 0.44, 1)
+
+[node name="LEDGreen2" type="ColorRect" parent="HoennCasing/CasingMargin/VerticalLayout/TopFlap/FlapMargin/FlapRow/SensorCluster/LEDs"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(8, 11)
+layout_mode = 2
+color = Color(0.13, 0.87, 0.44, 1)
+
+[node name="EmblemGroup" type="HBoxContainer" parent="HoennCasing/CasingMargin/VerticalLayout/TopFlap/FlapMargin/FlapRow"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="PokeballEmblem" type="TextureRect" parent="HoennCasing/CasingMargin/VerticalLayout/TopFlap/FlapMargin/FlapRow/EmblemGroup"]
+custom_minimum_size = Vector2(36, 36)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("4_emblem")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Brand" type="Label" parent="HoennCasing/CasingMargin/VerticalLayout/TopFlap/FlapMargin/FlapRow/EmblemGroup"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.95, 0.92, 1)
+theme_override_font_sizes/font_size = 17
+text = "POKÉDEX"
+vertical_alignment = 1
+
+[node name="ModelCode" type="Label" parent="HoennCasing/CasingMargin/VerticalLayout/TopFlap/FlapMargin/FlapRow/EmblemGroup"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.40, 0.12, 0.08, 1)
+theme_override_font_sizes/font_size = 10
+text = "ADV-300"
+vertical_alignment = 2
+
+[node name="SearchCapsule" type="PanelContainer" parent="HoennCasing/CasingMargin/VerticalLayout/TopFlap/FlapMargin/FlapRow"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_search_capsule")
+
+[node name="CapsuleMargin" type="MarginContainer" parent="HoennCasing/CasingMargin/VerticalLayout/TopFlap/FlapMargin/FlapRow/SearchCapsule"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 2
+
+[node name="CapsuleHBox" type="HBoxContainer" parent="HoennCasing/CasingMargin/VerticalLayout/TopFlap/FlapMargin/FlapRow/SearchCapsule/CapsuleMargin"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="SearchIcon" type="TextureRect" parent="HoennCasing/CasingMargin/VerticalLayout/TopFlap/FlapMargin/FlapRow/SearchCapsule/CapsuleMargin/CapsuleHBox"]
+unique_name_in_owner = true
+modulate = Color(0.65, 0.72, 0.85, 1)
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("8_search")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="SearchInput" type="LineEdit" parent="HoennCasing/CasingMargin/VerticalLayout/TopFlap/FlapMargin/FlapRow/SearchCapsule/CapsuleMargin/CapsuleHBox"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.96, 0.97, 1, 1)
+theme_override_colors/placeholder_color = Color(0.50, 0.55, 0.65, 1)
+theme_override_font_sizes/font_size = 12
+theme_override_styles/normal = SubResource("StyleBoxEmpty_search")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_search")
+placeholder_text = "Search by Pokémon name, #ID, or elemental type..."
+clear_button_enabled = true
+
+[node name="SearchKeycapBadge" type="PanelContainer" parent="HoennCasing/CasingMargin/VerticalLayout/TopFlap/FlapMargin/FlapRow/SearchCapsule/CapsuleMargin/CapsuleHBox"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_keycap")
+
+[node name="KeycapLabel" type="Label" parent="HoennCasing/CasingMargin/VerticalLayout/TopFlap/FlapMargin/FlapRow/SearchCapsule/CapsuleMargin/CapsuleHBox/SearchKeycapBadge"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.65, 0.72, 0.85, 1)
+theme_override_font_sizes/font_size = 10
+text = "  /  "
+
+[node name="RandomBtn" type="Button" parent="HoennCasing/CasingMargin/VerticalLayout/TopFlap/FlapMargin/FlapRow"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(36, 36)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_random_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_random_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_random_pressed")
+theme_override_styles/focus = SubResource("StyleBoxFlat_random_hover")
+icon = ExtResource("7_shuffle")
+icon_alignment = 1
+expand_icon = true
+
+[node name="MainConsole" type="HBoxContainer" parent="HoennCasing/CasingMargin/VerticalLayout"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 12
+
+[node name="LeftConsole" type="VBoxContainer" parent="HoennCasing/CasingMargin/VerticalLayout/MainConsole"]
+custom_minimum_size = Vector2(390, 0)
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="HeroCardPanel" type="PanelContainer" parent="HoennCasing/CasingMargin/VerticalLayout/MainConsole/LeftConsole"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_hero_card")
+
+[node name="CardMargin" type="MarginContainer" parent="HoennCasing/CasingMargin/VerticalLayout/MainConsole/LeftConsole/HeroCardPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 14
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 14
+
+[node name="CardVBox" type="VBoxContainer" parent="HoennCasing/CasingMargin/VerticalLayout/MainConsole/LeftConsole/HeroCardPanel/CardMargin"]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="HeaderRow" type="HBoxContainer" parent="HoennCasing/CasingMargin/VerticalLayout/MainConsole/LeftConsole/HeroCardPanel/CardMargin/CardVBox"]
+layout_mode = 2
+
+[node name="HeroName" type="Label" parent="HoennCasing/CasingMargin/VerticalLayout/MainConsole/LeftConsole/HeroCardPanel/CardMargin/CardVBox/HeaderRow"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 24
+text = "BULBASAUR"
+
+[node name="HeaderSpacer" type="Control" parent="HoennCasing/CasingMargin/VerticalLayout/MainConsole/LeftConsole/HeroCardPanel/CardMargin/CardVBox/HeaderRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HeroNumber" type="Label" parent="HoennCasing/CasingMargin/VerticalLayout/MainConsole/LeftConsole/HeroCardPanel/CardMargin/CardVBox/HeaderRow"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 0.75)
+theme_override_font_sizes/font_size = 18
+text = "#001"
+
+[node name="HeroTypes" type="HBoxContainer" parent="HoennCasing/CasingMargin/VerticalLayout/MainConsole/LeftConsole/HeroCardPanel/CardMargin/CardVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="DisplayArea" type="Control" parent="HoennCasing/CasingMargin/VerticalLayout/MainConsole/LeftConsole/HeroCardPanel/CardMargin/CardVBox"]
+layout_mode = 2
+size_flags_vertical = 3
+clip_contents = true
+
+[node name="WatermarkPokeball" type="TextureRect" parent="HoennCasing/CasingMargin/VerticalLayout/MainConsole/LeftConsole/HeroCardPanel/CardMargin/CardVBox/DisplayArea"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -70.0
+offset_top = -125.0
+offset_right = 180.0
+offset_bottom = 125.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("9_watermark")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="HeroSpotlight" type="TextureRect" parent="HoennCasing/CasingMargin/VerticalLayout/MainConsole/LeftConsole/HeroCardPanel/CardMargin/CardVBox/DisplayArea"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ArtworkPivot" type="Control" parent="HoennCasing/CasingMargin/VerticalLayout/MainConsole/LeftConsole/HeroCardPanel/CardMargin/CardVBox/DisplayArea"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -140.0
+offset_top = -140.0
+offset_right = 140.0
+offset_bottom = 140.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HeroArtwork" type="TextureRect" parent="HoennCasing/CasingMargin/VerticalLayout/MainConsole/LeftConsole/HeroCardPanel/CardMargin/CardVBox/DisplayArea/ArtworkPivot"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="SparkleParticles" type="CPUParticles2D" parent="HoennCasing/CasingMargin/VerticalLayout/MainConsole/LeftConsole/HeroCardPanel/CardMargin/CardVBox/DisplayArea/ArtworkPivot"]
+unique_name_in_owner = true
+position = Vector2(140, 140)
+emitting = false
+amount = 18
+lifetime = 0.85
+one_shot = true
+explosiveness = 0.85
+texture = ExtResource("10_sparkle")
+emission_shape = 1
+emission_sphere_radius = 55.0
+direction = Vector2(0, -1)
+spread = 180.0
+gravity = Vector2(0, 60)
+initial_velocity_min = 40.0
+initial_velocity_max = 130.0
+scale_amount_min = 0.5
+scale_amount_max = 0.9
+color = Color(1, 0.88, 0.25, 1)
+
+[node name="HeroGenus" type="Label" parent="HoennCasing/CasingMargin/VerticalLayout/MainConsole/LeftConsole/HeroCardPanel/CardMargin/CardVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 0.85)
+theme_override_font_sizes/font_size = 11
+text = "SEED POKÉMON"
+horizontal_alignment = 1
+
+[node name="ActionPillsRow" type="HBoxContainer" parent="HoennCasing/CasingMargin/VerticalLayout/MainConsole/LeftConsole"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+theme_override_constants/separation = 14
+alignment = 1
+
+[node name="PlayCryBtn" type="Button" parent="HoennCasing/CasingMargin/VerticalLayout/MainConsole/LeftConsole/ActionPillsRow"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 32)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(0.90, 0.93, 0.98, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 11
+theme_override_styles/normal = SubResource("StyleBoxFlat_cry_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_cry_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_cry_pressed")
+theme_override_styles/focus = SubResource("StyleBoxFlat_cry_hover")
+icon = ExtResource("6_sound")
+text = " CRY [SPACE]"
+
+[node name="ShinyBtn" type="Button" parent="HoennCasing/CasingMargin/VerticalLayout/MainConsole/LeftConsole/ActionPillsRow"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 32)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(0.95, 0.90, 0.70, 1)
+theme_override_colors/font_hover_color = Color(1, 0.98, 0.85, 1)
+theme_override_font_sizes/font_size = 11
+theme_override_styles/normal = SubResource("StyleBoxFlat_shiny_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_shiny_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_shiny_pressed")
+theme_override_styles/focus = SubResource("StyleBoxFlat_shiny_hover")
+icon = ExtResource("10_sparkle")
+text = " SHINY [S]"
+
+[node name="CenterDataUnit" type="VBoxContainer" parent="HoennCasing/CasingMargin/VerticalLayout/MainConsole"]
+custom_minimum_size = Vector2(340, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 8
+
+[node name="StatsCard" type="PanelContainer" parent="HoennCasing/CasingMargin/VerticalLayout/MainConsole/CenterDataUnit"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_hud_card")
+
+[node name="Margin" type="MarginContainer" parent="HoennCasing/CasingMargin/VerticalLayout/MainConsole/CenterDataUnit/StatsCard"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 8
+
+[node name="VBox" type="VBoxContainer" parent="HoennCasing/CasingMargin/VerticalLayout/MainConsole/CenterDataUnit/StatsCard/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="Header" type="HBoxContainer" parent="HoennCasing/CasingMargin/VerticalLayout/MainConsole/CenterDataUnit/StatsCard/Margin/VBox"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="HoennCasing/CasingMargin/VerticalLayout/MainConsole/CenterDataUnit/StatsCard/Margin/VBox/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.9, 0.92, 0.96, 1)
+theme_override_font_sizes/font_size = 11
+text = "BASE STAT ANALYSIS"
+
+[node name="TotalStatsVal" type="Label" parent="HoennCasing/CasingMargin/VerticalLayout/MainConsole/CenterDataUnit/StatsCard/Margin/VBox/Header"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.4, 0.8, 1, 1)
+theme_override_font_sizes/font_size = 10
+text = "BASE TOTAL: 318"
+
+[node name="StatHP" parent="HoennCasing/CasingMargin/VerticalLayout/MainConsole/CenterDataUnit/StatsCard/Margin/VBox" instance=ExtResource("3_statbar")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="StatATK" parent="HoennCasing/CasingMargin/VerticalLayout/MainConsole/CenterDataUnit/StatsCard/Margin/VBox" instance=ExtResource("3_statbar")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="StatDEF" parent="HoennCasing/CasingMargin/VerticalLayout/MainConsole/CenterDataUnit/StatsCard/Margin/VBox" instance=ExtResource("3_statbar")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="StatSPA" parent="HoennCasing/CasingMargin/VerticalLayout/MainConsole/CenterDataUnit/StatsCard/Margin/VBox" instance=ExtResource("3_statbar")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="StatSPD" parent="HoennCasing/CasingMargin/VerticalLayout/MainConsole/CenterDataUnit/StatsCard/Margin/VBox" instance=ExtResource("3_statbar")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="StatSPE" parent="HoennCasing/CasingMargin/VerticalLayout/MainConsole/CenterDataUnit/StatsCard/Margin/VBox" instance=ExtResource("3_statbar")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="SpecsCard" type="PanelContainer" parent="HoennCasing/CasingMargin/VerticalLayout/MainConsole/CenterDataUnit"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_hud_card")
+
+[node name="Margin" type="MarginContainer" parent="HoennCasing/CasingMargin/VerticalLayout/MainConsole/CenterDataUnit/SpecsCard"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 8
+
+[node name="VBox" type="VBoxContainer" parent="HoennCasing/CasingMargin/VerticalLayout/MainConsole/CenterDataUnit/SpecsCard/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="HBox" type="HBoxContainer" parent="HoennCasing/CasingMargin/VerticalLayout/MainConsole/CenterDataUnit/SpecsCard/Margin/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="HeightBox" type="PanelContainer" parent="HoennCasing/CasingMargin/VerticalLayout/MainConsole/CenterDataUnit/SpecsCard/Margin/VBox/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_subcard")
+
+[node name="HeightMargin" type="MarginContainer" parent="HoennCasing/CasingMargin/VerticalLayout/MainConsole/CenterDataUnit/SpecsCard/Margin/VBox/HBox/HeightBox"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 4
+
+[node name="VBox" type="VBoxContainer" parent="HoennCasing/CasingMargin/VerticalLayout/MainConsole/CenterDataUnit/SpecsCard/Margin/VBox/HBox/HeightBox/HeightMargin"]
+layout_mode = 2
+
+[node name="Lbl" type="Label" parent="HoennCasing/CasingMargin/VerticalLayout/MainConsole/CenterDataUnit/SpecsCard/Margin/VBox/HBox/HeightBox/HeightMargin/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5, 0.55, 0.65, 1)
+theme_override_font_sizes/font_size = 9
+text = "HEIGHT"
+
+[node name="HeightVal" type="Label" parent="HoennCasing/CasingMargin/VerticalLayout/MainConsole/CenterDataUnit/SpecsCard/Margin/VBox/HBox/HeightBox/HeightMargin/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.95, 0.96, 1, 1)
+theme_override_font_sizes/font_size = 13
+text = "0.7 m"
+
+[node name="WeightBox" type="PanelContainer" parent="HoennCasing/CasingMargin/VerticalLayout/MainConsole/CenterDataUnit/SpecsCard/Margin/VBox/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_subcard")
+
+[node name="WeightMargin" type="MarginContainer" parent="HoennCasing/CasingMargin/VerticalLayout/MainConsole/CenterDataUnit/SpecsCard/Margin/VBox/HBox/WeightBox"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 4
+
+[node name="VBox" type="VBoxContainer" parent="HoennCasing/CasingMargin/VerticalLayout/MainConsole/CenterDataUnit/SpecsCard/Margin/VBox/HBox/WeightBox/WeightMargin"]
+layout_mode = 2
+
+[node name="Lbl" type="Label" parent="HoennCasing/CasingMargin/VerticalLayout/MainConsole/CenterDataUnit/SpecsCard/Margin/VBox/HBox/WeightBox/WeightMargin/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5, 0.55, 0.65, 1)
+theme_override_font_sizes/font_size = 9
+text = "WEIGHT"
+
+[node name="WeightVal" type="Label" parent="HoennCasing/CasingMargin/VerticalLayout/MainConsole/CenterDataUnit/SpecsCard/Margin/VBox/HBox/WeightBox/WeightMargin/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.95, 0.96, 1, 1)
+theme_override_font_sizes/font_size = 13
+text = "6.9 kg"
+
+[node name="AbilitiesContainer" type="HBoxContainer" parent="HoennCasing/CasingMargin/VerticalLayout/MainConsole/CenterDataUnit/SpecsCard/Margin/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="DefensesCard" type="PanelContainer" parent="HoennCasing/CasingMargin/VerticalLayout/MainConsole/CenterDataUnit"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_hud_card")
+
+[node name="Margin" type="MarginContainer" parent="HoennCasing/CasingMargin/VerticalLayout/MainConsole/CenterDataUnit/DefensesCard"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 8
+
+[node name="VBox" type="VBoxContainer" parent="HoennCasing/CasingMargin/VerticalLayout/MainConsole/CenterDataUnit/DefensesCard/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="Title" type="Label" parent="HoennCasing/CasingMargin/VerticalLayout/MainConsole/CenterDataUnit/DefensesCard/Margin/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.92, 0.96, 1)
+theme_override_font_sizes/font_size = 11
+text = "TYPE DEFENSES & MATCHUPS"
+
+[node name="WeaknessesBox" type="VBoxContainer" parent="HoennCasing/CasingMargin/VerticalLayout/MainConsole/CenterDataUnit/DefensesCard/Margin/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 3
+
+[node name="Lbl" type="Label" parent="HoennCasing/CasingMargin/VerticalLayout/MainConsole/CenterDataUnit/DefensesCard/Margin/VBox/WeaknessesBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.98, 0.45, 0.55, 1)
+theme_override_font_sizes/font_size = 9
+text = "WEAK TO (2×):"
+
+[node name="WeaknessesContainer" type="HFlowContainer" parent="HoennCasing/CasingMargin/VerticalLayout/MainConsole/CenterDataUnit/DefensesCard/Margin/VBox/WeaknessesBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/h_separation = 6
+theme_override_constants/v_separation = 4
+
+[node name="ResistancesBox" type="VBoxContainer" parent="HoennCasing/CasingMargin/VerticalLayout/MainConsole/CenterDataUnit/DefensesCard/Margin/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 3
+
+[node name="Lbl" type="Label" parent="HoennCasing/CasingMargin/VerticalLayout/MainConsole/CenterDataUnit/DefensesCard/Margin/VBox/ResistancesBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.35, 0.85, 0.65, 1)
+theme_override_font_sizes/font_size = 9
+text = "RESISTS (½×):"
+
+[node name="ResistancesContainer" type="HFlowContainer" parent="HoennCasing/CasingMargin/VerticalLayout/MainConsole/CenterDataUnit/DefensesCard/Margin/VBox/ResistancesBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/h_separation = 6
+theme_override_constants/v_separation = 4
+
+[node name="FlavorTerminal" type="PanelContainer" parent="HoennCasing/CasingMargin/VerticalLayout/MainConsole/CenterDataUnit"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_flavor")
+
+[node name="Margin" type="MarginContainer" parent="HoennCasing/CasingMargin/VerticalLayout/MainConsole/CenterDataUnit/FlavorTerminal"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 8
+
+[node name="VBox" type="VBoxContainer" parent="HoennCasing/CasingMargin/VerticalLayout/MainConsole/CenterDataUnit/FlavorTerminal/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="TerminalHeader" type="Label" parent="HoennCasing/CasingMargin/VerticalLayout/MainConsole/CenterDataUnit/FlavorTerminal/Margin/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5, 0.6, 0.75, 1)
+theme_override_font_sizes/font_size = 9
+text = "// FIELD ARCHIVE"
+
+[node name="FlavorText" type="Label" parent="HoennCasing/CasingMargin/VerticalLayout/MainConsole/CenterDataUnit/FlavorTerminal/Margin/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.88, 0.92, 0.98, 1)
+theme_override_font_sizes/font_size = 11
+text = "A strange seed was planted on its back at birth. The plant sprouts and grows with this POKéMON."
+autowrap_mode = 2
+
+[node name="RightIndexDrawer" type="VBoxContainer" parent="HoennCasing/CasingMargin/VerticalLayout/MainConsole"]
+custom_minimum_size = Vector2(280, 0)
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="ListHeader" type="HBoxContainer" parent="HoennCasing/CasingMargin/VerticalLayout/MainConsole/RightIndexDrawer"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="HoennCasing/CasingMargin/VerticalLayout/MainConsole/RightIndexDrawer/ListHeader"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 0.95, 0.92, 1)
+theme_override_font_sizes/font_size = 11
+text = "POKÉDEX INDEX"
+
+[node name="EntryCountLabel" type="Label" parent="HoennCasing/CasingMargin/VerticalLayout/MainConsole/RightIndexDrawer/ListHeader"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.3, 0.1, 0.05, 1)
+theme_override_font_sizes/font_size = 10
+text = "[ 151 / 151 ]"
+
+[node name="ListPanel" type="PanelContainer" parent="HoennCasing/CasingMargin/VerticalLayout/MainConsole/RightIndexDrawer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_hud_card")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="HoennCasing/CasingMargin/VerticalLayout/MainConsole/RightIndexDrawer/ListPanel"]
+unique_name_in_owner = true
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="Margin" type="MarginContainer" parent="HoennCasing/CasingMargin/VerticalLayout/MainConsole/RightIndexDrawer/ListPanel/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="CardsContainer" type="VBoxContainer" parent="HoennCasing/CasingMargin/VerticalLayout/MainConsole/RightIndexDrawer/ListPanel/ScrollContainer/Margin"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 6
+
+[node name="BottomKeyboardLegend" type="PanelContainer" parent="HoennCasing/CasingMargin/VerticalLayout"]
+custom_minimum_size = Vector2(0, 26)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_legend")
+
+[node name="Margin" type="MarginContainer" parent="HoennCasing/CasingMargin/VerticalLayout/BottomKeyboardLegend"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 4
+
+[node name="LegendLabel" type="Label" parent="HoennCasing/CasingMargin/VerticalLayout/BottomKeyboardLegend/Margin"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.72, 0.78, 0.88, 1)
+theme_override_font_sizes/font_size = 10
+text = "[↑ / ↓ or J / K] Navigate   •   [← / →] Jump 10   •   [SPACE] Play Cry   •   [S] Shiny Mode   •   [/] Search   •   [R] Random"
+horizontal_alignment = 1
+vertical_alignment = 1
