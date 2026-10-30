@@ -1,5 +1,3 @@
-[![VectorDex banner](assets/images/vectordex-banner-v2.png)](assets/images/vectordex-banner-v2.png)
-
 # VectorDex
 
 i wanted a Pokédex that felt like a little console i could actually poke around in. so i made VectorDex: a desktop Pokédex built with Godot and GDScript, with Ruby doing the work of collecting the data. rn it covers the original 151 Pokémon, and i just wanted an excuse to learn ruby tbh.
