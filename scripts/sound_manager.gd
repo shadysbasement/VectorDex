@@ -70,8 +70,8 @@ func play_cry(pokemon_id: int):
 
     if cry_cache.has(pokemon_id):
         stream = cry_cache[pokemon_id]
-    elif FileAccess.file_exists(path):
-        stream = AudioStreamOggVorbis.load_from_file(path)
+    elif ResourceLoader.exists(path):
+        stream = load(path) as AudioStreamOggVorbis
         if stream:
             cry_cache[pokemon_id] = stream
 

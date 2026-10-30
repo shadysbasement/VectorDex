@@ -18,7 +18,9 @@ and here's shiny Charizard after searching for `char`:
 
 ## Wanna try it?
 
-you'll need Godot 4.7. the Pokédex data, artwork, shiny images, and cries are already in the repo, so you don't need to run the ruby script just to open the app.
+if you just wanna play it, grab the [v0.1.0 release](https://github.com/shadysbasement/VectorDex/releases/tag/v0.1.0). pick the zip for your OS, unzip it, and run VectorDex. no Godot or Ruby needed.
+
+if you wanna run it from source, you'll need Godot 4.7. the Pokédex data, artwork, shiny images, and cries are already in the repo, so you don't need to run the ruby script just to open the app.
 
 ```bash
 git clone https://github.com/shadysbasement/pokedex.git
